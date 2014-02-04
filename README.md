@@ -8,13 +8,9 @@ Script Usage
 -------------
 
 ## Crontab file
-Add the following lines to your crontab 
-<pre><code>
-crontab -e
-</code></pre>
+Add the following lines to your crontab <pre><code>crontab -e</code></pre>
 
-<pre><code>
-\## Formal Dinner Booker Sunday
+<pre><code>\## Formal Dinner Booker Sunday
 \# Fast script
 59 20 * * 0 booker_getevent.sh -p ~/.my.cnf -t 1 -u [raven.username] -e "[Event.Name]"
 00 21 * * 0 bookevent.sh
@@ -23,8 +19,8 @@ crontab -e
 59 20 * * 0 (sleep 30; booker.sh -t 1 -u [raven.username] -p ~/.my.cnf -e "[Event.Name]")
 </code></pre>
 
+The
+
 # example
-<pre><code>
-59 20 * * ) booker_getevent.sh -p ~/.my.cnf -t 1 -u rjg70 -e "Formal Dinner"
-</code></pre>
+<pre><code>59 20 * * ) booker_getevent.sh -p ~/.my.cnf -t 1 -u rjg70 -e "Formal Dinner"</code></pre>
 
