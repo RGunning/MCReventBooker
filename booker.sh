@@ -31,7 +31,7 @@ wget --keep-session-cookies --save-cookies cookies.txt --post-data 'userid='$use
 #TODO: ADD specificity for  any event
 wget --load-cookies cookies.txt http://mcr.clare.cam.ac.uk/events -O events.html
 
-url=$(grep "$event" events.html | grep -E '[0-9][0-9][0-9]' -o)
+url=$(grep -i "$event" events.html | grep -E '[0-9][0-9][0-9]' -o)
 join=$(< events.html tr -d '\n' | grep -oP '(?<=<p> ).*?(?= </p>)'| grep $url -o | wc -w)
 echo $url
 echo $join
@@ -43,7 +43,7 @@ echo $counter
 
 while [[ $join == 1 && $counter != 20 ]]; do
 	wget --load-cookies cookies.txt http://mcr.clare.cam.ac.uk/events -O events.html
-	url=$(grep "$event" events.html | grep -E '[0-9][0-9][0-9]' -o)
+	url=$(grep -i "$event" events.html | grep -E '[0-9][0-9][0-9]' -o)
 	join=$(< events.html tr -d '\n' | grep -oP '(?<=<p> ).*?(?= </p>)'| grep $url -o | wc -w)
 	echo $join
 	echo "Run through ="

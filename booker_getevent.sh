@@ -32,7 +32,7 @@ rm authenticate2*
 #TODO: ADD specificity for  any event
 wget --load-cookies cookies.txt http://mcr.clare.cam.ac.uk/events -O events.html
 
-url=$(grep "$event" events.html | grep -E '[0-9][0-9][0-9]' -o)
+url=$(grep -i "$event" events.html | grep -E '[0-9][0-9][0-9]' -o)
 
 newurl="http://mcr.clare.cam.ac.uk/events/mealbooker.py/bookEventHandler/$url"
 queueurl="http://mcr.clare.cam.ac.uk/events/mealbooker.py/joinQueueForEventHandler/$url"
