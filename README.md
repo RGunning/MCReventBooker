@@ -47,10 +47,10 @@ Add the following lines to your crontab <pre><code>crontab -e</code></pre>
 <pre><code>59 20 * * ) booker_getevent.sh -p ~/.my.cnf -t 1 -u rjg70 -e "Formal Dinner"</code></pre>
 
 #Command Line Options
--t : number of tickets [1-2]
--p : passwordFile e.g. ~/.my.cnf
--e : event name
--u : raven username
+-t : number of tickets [1-2]  
+-p : passwordFile e.g. ~/.my.cnf  
+-e : event name  
+-u : raven username  
 
 
 
