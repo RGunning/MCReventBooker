@@ -5,7 +5,7 @@ The scripts hosted within this repository are for the automation of booking Clar
 There are two script procedures for booking tickets. The first uses *booker_getevent.sh*, *bookevent.sh* and *queueevent.sh*. 
 This method is fast, avoiding network traffic on the system, however it is completely time dependent, if the bookevent queue is late going live, then this method will FAIL.
 The second method uses the script *booker.sh*. This script is more robust, refreshing the bookevent page until the queue goes live. However, it is much slower as it can get stuck in network traffic.
-The event name may need updated weekly, in the crontab, to reflect the name given on the [website](http://mcr.clare.cam.ac.uk/events.html).  
+The event name may need updated weekly, in the crontab, to reflect the name given on the [website](http://mcr.clare.cam.ac.uk/events/mealbooker.py).  
 
 
 Script Usage
