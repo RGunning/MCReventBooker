@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Mcreventbooker : Clare college MCR Formal Dinner Booking" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Mcreventbooker</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/RGunning/MCReventBooker">View on GitHub</a>
+
+          <h1 id="project_title">Mcreventbooker</h1>
+          <h2 id="project_tagline">Clare college MCR Formal Dinner Booking</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/RGunning/MCReventBooker/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/RGunning/MCReventBooker/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="mcreventbooker" class="anchor" href="#mcreventbooker"><span class="octicon octicon-link"></span></a>MCReventBooker</h1>
+
+<p>The scripts hosted within this repository are for the automation of booking Clare College MCR Formal tickets.
+There are two script procedures for booking tickets. The first uses <em>booker_getevent.sh</em>, <em>bookevent.sh</em> and <em>queueevent.sh</em>. 
+This method is fast, avoiding network traffic on the system, however it is completely time dependent, if the bookevent queue is late going live, then this method will FAIL.
+The second method uses the script <em>booker.sh</em>. This script is more robust, refreshing the bookevent page until the queue goes live. However, it is much slower as it can get stuck in network traffic.
+The event name may need updated weekly, in the crontab, to reflect the name given on the <a href="http://mcr.clare.cam.ac.uk/events/mealbooker.py">website</a>.  </p>
+
+<h2>
+<a name="script-usage" class="anchor" href="#script-usage"><span class="octicon octicon-link"></span></a>Script Usage</h2>
+
+<p>To use these scripts, access to a UNIX commandline is necessary. A free account is available from the <a href="http://www.srcf.net/">SRCF</a>. </p>
+
+<p>After Downloading and unpacking the distribution, go to the file directory </p><pre><code>cd MCReventBooker</code></pre> and make the scripts executable <pre><code>chmod 770 *</code></pre>. 
+Move the scripts to your bin. <pre><code>mkdir ~/bin; mv * ~/bin/</code></pre> 
+
+<p>Now create a passwordFile (.my.cnf) containing your raven password. 
+This file must be of the form password=[raven.password]</p>
+
+<p>E.g. The .my.cnf file should look like this </p>
+
+<pre><code>password="P4SSW0RD"</code></pre>
+
+<p>set the file to be read only by the user</p>
+
+<pre><code>chmod 600 ~/.my.cnf</code></pre>
+
+<p>create a new folder if you want both the fast and robust scripts to run simultaneously</p>
+
+<pre><code>mkdir ~/bookdir</code></pre>  
+
+<p>Now Call the scripts using crontab
+Add the following lines to your crontab </p><pre><code>crontab -e</code></pre>
+
+<pre><code>\## Formal Dinner Booker Sunday
+\# Fast script
+59 20 * * 0 booker_getevent.sh -p ~/[passwordFile] -t 1 -u [raven.username] -e "[Event.Name]"
+00 21 * * 0 bookevent.sh
+00 21 * * 0 queueevent.sh 
+\# Robust script
+59 20 * * 0 (cd bookdir; sleep 30; booker.sh -t 1 -u [raven.username] -p ~/[passwordFile] -e "[Event.Name]")
+</code></pre>
+
+<p><em>booker_getevent.sh</em> and <em>booker.sh</em> should be called before the queue goes live, i.e. at 20:59.
+<em>bookevent.sh</em> and <em>queueevent.sh</em> are called simultaneously as the queue goes live, i.e. at 21:00.</p>
+
+<h1>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>example</h1>
+
+<pre><code>59 20 * * ) booker_getevent.sh -p ~/.my.cnf -t 1 -u rjg70 -e "Formal Dinner"</code></pre>
+
+<h1>
+<a name="command-line-options" class="anchor" href="#command-line-options"><span class="octicon octicon-link"></span></a>Command Line Options</h1>
+
+<p>-t : number of tickets [1-2]<br>
+-p : passwordFile e.g. ~/.my.cnf<br>
+-e : event name<br>
+-u : raven username  </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Mcreventbooker maintained by <a href="https://github.com/RGunning">RGunning</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
