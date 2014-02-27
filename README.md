@@ -16,13 +16,16 @@ To use these scripts, access to a UNIX commandline is necessary. A free account 
 After Downloading and unpacking the distribution, go to the file directory <pre><code>cd MCReventBooker</code></pre> and make the scripts executable <pre><code>chmod 770 *</code></pre>. 
 Move the scripts to your bin. <pre><code>mkdir ~/bin; mv * ~/bin/</code></pre> 
 
-Now create a passwordFile (.my.cnf) containing your raven password. 
-This file must be of the form password=[raven.password]
+Now create a passwordFile (.my.cnf) containing your raven password.  
+This file must be of the form password=[raven.password]  
+
+You can create the file with the command <pre><code>nano ~/.my.cnf</code></pre>  
+Use Ctrl-X to save and exit nano
 
 E.g. The .my.cnf file should look like this 
 <pre><code>password="P4SSW0RD"</code></pre>
 
-set the file to be read only by the user
+Next set the file to be readable only by the user
 <pre><code>chmod 600 ~/.my.cnf</code></pre>
 
 create a new folder if you want both the fast and robust scripts to run simultaneously
