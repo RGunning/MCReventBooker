@@ -5,7 +5,7 @@ user='rjg70'
 event="MCR Formal"
 
 # read number of tickets required from command line. DEFAULT=1
-while getopts t:u:p:e: opt; do
+while getopts t::u::p:e:: opt; do
 	case $opt in
 	t)
 		tickets=$OPTARG
