@@ -1,12 +1,31 @@
 #!/bin/bash
+sage()
+{
+cat << EOF
+usage: $0 options
+
+This script finds and books Clare College MCR Formal Dinners based on supplied options
+
+OPTIONS:
+   -h      Show this message
+   -t      number of tickets '1' or '2'
+   -u      raven username
+   -p      file password is stored in
+   -e      event name
+EOF
+}
 
 tickets=1
 user='rjg70'
 event="MCR Formal"
 
 # read number of tickets required from command line. DEFAULT=1
-while getopts t:u:p:e: opt; do
+while getopts ht::u::p:e:: opt; do
 	case $opt in
+	h)
+             	usage
+             	exit 1
+             	;;
 	t)
 		tickets=$OPTARG
 		;;
@@ -20,8 +39,18 @@ while getopts t:u:p:e: opt; do
 	e)
 		event=$OPTARG
 		;;
+	?)
+        	usage
+                exit
+                ;;
 	esac
 done
+
+if [[ -z $tickets ]] || [[ -z $user ]] || [[ -z $password ]] || [[ -z $event ]]
+then
+     usage
+     exit 1
+fi
 
 
 # login to raven and save cookie
