@@ -34,12 +34,12 @@ create a new folder if you want both the fast and robust scripts to run simultan
 Now Call the scripts using crontab
 Add the following lines to your crontab <pre><code>crontab -e</code></pre>
 
-<pre><code>\## Formal Dinner Booker Sunday
-\# Fast script
+<pre><code>## Formal Dinner Booker Sunday
+# Fast script
 59 20 * * 0 booker_getevent.sh -p ~/[passwordFile] -t 1 -u [raven.username] -e "[Event.Name]"
 00 21 * * 0 bookevent.sh
 00 21 * * 0 queueevent.sh 
-\# Robust script
+# Robust script
 59 20 * * 0 (cd bookdir; sleep 30; booker.sh -t 1 -u [raven.username] -p ~/[passwordFile] -e "[Event.Name]")
 </code></pre>
 
